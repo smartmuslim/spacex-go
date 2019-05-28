@@ -1,9 +1,8 @@
+import 'package:cherry/util/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../util/colors.dart';
 
 enum Themes { light, dark, black }
 enum ImageQuality { low, medium, high }
@@ -13,42 +12,6 @@ enum ImageQuality { low, medium, high }
 class AppModel extends Model {
   static final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
-
-  static final String font =
-      DateTime.now().month == 4 && DateTime.now().day == 1
-          ? 'ComicSans'
-          : 'ProductSans';
-
-  static final List<ThemeData> _themes = [
-    ThemeData(
-      brightness: Brightness.light,
-      fontFamily: font,
-      primaryColor: lightPrimaryColor,
-      accentColor: lightAccentColor,
-    ),
-    ThemeData(
-      brightness: Brightness.dark,
-      fontFamily: font,
-      primaryColor: darkPrimaryColor,
-      accentColor: darkAccentColor,
-      canvasColor: darkCanvasColor,
-      scaffoldBackgroundColor: darkBackgroundColor,
-      cardColor: darkCardColor,
-      dividerColor: darkDividerColor,
-      dialogBackgroundColor: darkCardColor,
-    ),
-    ThemeData(
-      brightness: Brightness.dark,
-      fontFamily: font,
-      primaryColor: blackPrimaryColor,
-      accentColor: blackAccentColor,
-      canvasColor: blackBackgroundColor,
-      scaffoldBackgroundColor: blackBackgroundColor,
-      cardColor: blackCardColor,
-      dividerColor: blackDividerColor,
-      dialogBackgroundColor: darkCardColor,
-    )
-  ];
 
   ImageQuality _imageQuality = ImageQuality.medium;
 
@@ -63,7 +26,7 @@ class AppModel extends Model {
 
   Themes _theme = Themes.dark;
 
-  ThemeData _themeData = _themes[1];
+  ThemeData _themeData = AppTheme.dark();
 
   get theme => _theme;
 
